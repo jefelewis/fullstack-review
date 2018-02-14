@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher');
 
 
-// Database Schema
+// Database: Schema
 let repoSchema = mongoose.Schema({
   // TODO: your schema here!
   id: Number,
@@ -17,41 +17,50 @@ let repoSchema = mongoose.Schema({
 });
 
 
-// The Model is one instance of the Schema
+// Database: Model
 let Repo = mongoose.model('Repo', repoSchema);
 
 
 // Database Query: Save
 let save = function(repo) {
   // TODO: Your code here
-  // This function should save a repo or repos to the MongoDB
-  repo.save();
-
+  // This function should save a repo or repos to MongoDB
+  repo.save(function(error){
+    if(error){
+      return handleError(error);
+    }
+  });
 };
 
 // Database Query: Seach/Find
 let find = function(repo) {
-  repo.find()
+  // This function should find a repo or repos in MongoDB
+  repo.find(function(error){
+    if(error){
+      return handleError(error);
+    }
+  });
 };
 
 
-
 /***************************** For Testing *****************************/
-var test = new Repo({
-  id: 1,
-  name: "String",
-  fullName: "String",
-  stargazers_count: 1,
-  watchers_count: 1,
-  forks_count: 1
-});
+    var test = new Repo({
+      id: 1,
+      name: "String",
+      fullName: "String",
+      stargazers_count: 1,
+      watchers_count: 1,
+      forks_count: 1
+    });
 
-test.save();
+    test.save();
 
-Repo.find(function (err, data) {
-  if (err) return console.log(err);
-  console.log(data);
-})
+    Repo.find(function(err, data) {
+      if(err) {
+        return console.log(err);
+      }
+      console.log(data);
+    });
 /***************************** For Testing *****************************/
 
 
