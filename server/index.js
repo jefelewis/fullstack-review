@@ -26,9 +26,11 @@ app.post('/repos', function (req, res) {
   /********************** WRONG? **********************/
   let username = req.body;
 
-  // and get the repo information from the github API, then
+  // Get the repo information from the github API, then
 
-  // save the repo information in the database
+
+
+  // Save the repo information in the database
 
 
 });
