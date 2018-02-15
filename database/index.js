@@ -29,16 +29,18 @@ let save = function(repo) {
     if(error){
       return handleError(error);
     }
+    console.log("The " + repo + " has been saved.");
   });
 };
 
 // Database Query: Seach/Find
-let find = function(repo) {
+let search = function(repo) {
   // This function should find a repo or repos in MongoDB
   repo.find(function(error){
     if(error){
       return handleError(error);
     }
+    console.log("The " + repo + " has been found.");
   });
 };
 
@@ -66,4 +68,4 @@ let find = function(repo) {
 
 // Export Save functions (Where do we import?)
 module.exports.save = save;
-module.exports.search = find;
+module.exports.search = search;
