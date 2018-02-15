@@ -25,47 +25,55 @@ let Repo = mongoose.model('Repo', repoSchema);
 let save = function(repo) {
   // TODO: Your code here
   // This function should save a repo or repos to MongoDB
-  repo.save(function(error){
+  repo.save().then(function(error){
     if(error){
       return handleError(error);
     }
-    console.log("The " + repo + " has been saved.");
+    else{
+      console.log("The " + repo + " has been saved.");
+    }
   });
 };
 
 // Database Query: Seach/Find
-let search = function(repo) {
+let search = function() {
   // This function should find a repo or repos in MongoDB
-  repo.find(function(error){
+  Repo.find(function(error, data){
     if(error){
       return handleError(error);
     }
-    console.log("The " + repo + " has been found.");
-  });
+    else{
+      console.log(data + " has been found.");
+    }
+}  });
 };
 
+// Database Query: Update
+
+
 
 /***************************** For Testing *****************************/
-    var test = new Repo({
-      id: 1,
-      name: "String",
-      fullName: "String",
-      stargazers_count: 1,
-      watchers_count: 1,
-      forks_count: 1
-    });
-
-    test.save();
-
-    Repo.find(function(err, data) {
-      if(err) {
-        return console.log(err);
-      }
-      console.log(data);
-    });
+    // var test = new Repo({
+    //   id: 1,
+    //   name: "String",
+    //   fullName: "String",
+    //   stargazers_count: 1,
+    //   watchers_count: 1,
+    //   forks_count: 1
+    // });
+    //
+    // test.save();
+    //
+    // Repo.find(function(err, data) {
+    //   if(err) {
+    //     return console.log(err);
+    //   }
+    //   console.log(data);
+    // });
 /***************************** For Testing *****************************/
 
 
-// Export Save functions (Where do we import?)
+// Export Functions/Model
 module.exports.save = save;
 module.exports.search = search;
+module.exports.Repo = Repo;
